@@ -1,0 +1,37 @@
+<form>
+    <div class="row">
+        <h2 class="text-center col-12">CRUCIGRAMA</h2>
+    </div>
+    <div class="row justify-content-center"><p>El objetivo del juego es descifrar la palabra en ingles en base a la palabra en español que será mostrada en la parte inferior.</p></div>
+    <div class="row mb-2">
+        <label for="para" class="col-2">Seleccione Tematica:</label>
+        <select (change)=seleccionarPalabra() [(ngModel)]="tematica_actual" name="tematica">
+            <option value="" selected>Seleccione..</option>
+            <option *ngFor="let item of palabras_juego" value="{{item.categoria}}">{{item.categoria}}</option>
+        </select>
+        <div class="col-6"></div>
+        <button type="button" class="btn btn-primary col-2" (click)="resetearVariablesyVidas()">Inicio</button>
+    </div>
+    <div class="row alert alert-info justify-content-around">
+        <label for="para" class="">Vidas: {{cantidad_vidas}}</label>
+        <label for="para" class="">Puntaje: {{cantidad_puntaje}}</label>
+    </div>
+    <div class="row justify-content-center">
+        <div class="card-group">
+            <img [src]="palabra_espaniol_actual.urlimagen" class="card-img-top" alt="">
+        </div>
+    </div>
+    <div class="row justify-content-center m-3">
+        <input type="text"  maxlength="1" *ngFor="let item of palabra_ingles_Actual;let i= index" [attr.disabled]="disabledLetraIngresada[i] ? true : null"
+        name="letra{{i}}" id="letra{{i}}" class="col-1" [(ngModel)]="palabraLetraIngresada[i]" (ngModelChange)="controlarLetra(i)">
+    </div>
+    <div class="row">
+        
+    </div>
+    <div class="row">
+        <button type="button" class="btn btn-primary col-1" *ngFor="let item of abecedario">{{item}}</button>
+    </div>
+    <div class="row success alert-success justify-content-center mt-3">
+        <label for="para" class="text-center"><h5>Palabra en Español: {{palabra_espaniol_actual.palabraespaniol}}</h5></label>
+    </div>
+</form>

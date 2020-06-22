@@ -1,0 +1,47 @@
+<div class="row">
+    <form class="col-md-10 offset-1">
+        <h2 class="text-center m-4"> REGISTRO DE ASISTENTES</h2>
+        <div class="form-group row">
+            <label for="idusuario" class="col-md-4">Usuario</label>
+            <input id="idusuario" class="form-control form-control-sm col-md-8" 
+                type="email" name="idusuario" [(ngModel)]="asistente.usuario" placeholder="mail@example.com" required/>
+        </div>
+        <div class="form-group row">
+            <label for="idnombreorganizacion" class="col-md-4">Nombre Organizacion</label>
+            <input id="idnombreorganizacion" class="form-control form-control-sm col-md-8"
+                 type="text" name="idnombreorganizacion" [(ngModel)]="asistente.nombreOrganizacion" required/>
+        </div>
+        <div class="form-group row">
+            <label for="idsolicitaconstancia" class="col-md-4">Solicita Constancia</label>
+            <input id="idsolicitaconstancia" class="form-control form-control-sm col-md-8"
+                 type="checkbox" name="idsolicitaconstancia" [(ngModel)]="asistente.solicitaConstancia"/>
+        </div>
+        <div class="row form-group justify-content-end">
+            <button type="submit" class="btn btn-secondary" (click)="registrarAsistente()"><i class="fas fa-save fal"></i> REGISTRAR</button>            
+            <button class="btn btn-secondary ml-2 mr-2" (click)="modificarAsistente()"><i class="fas fa-save fal"></i> MODIFICAR</button>
+        </div>
+    </form>
+</div>
+<div class="row">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Usuario</th>
+            <th scope="col">Nombre Organizacion</th>
+            <th scope="col">Solicita Constancia</th>
+            <th >Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let asistente of asistentes">
+            <th scope="row">{{asistente.usuario}}</th>
+            <td>{{asistente.nombreOrganizacion | uppercase}}</td>
+            <td>{{asistente.solicitaConstancia}}</td>
+            <td> 
+              <button class="btn btn-primary" (click)="elegirAsistente(asistente)" >Seleccionar</button>
+              <button class="btn btn-primary" (click)="borrarAsistente(asistente)" >Borrar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+</div>
